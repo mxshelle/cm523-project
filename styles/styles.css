@@ -1,9 +1,887 @@
 /* ===== YOUR CSS GOES HERE ===== */
 /* ===== START WITH GLOBAL STYLES THEN USE MEDIA QUERIES FOR LAYOUT ADJUSTMENTS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&family=Bodoni+Moda:ital@0;1&family=Italiana&family=Manrope:wght@300;400;500;600&family=Philosopher&display=swap');
+html {
+    box-sizing: border-box;
+}
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+}
+
+:root {
+    --main-bg-color: #F0F4EF;
+    --main-dark-color: #0D1821;
+    --main-grey-color: #a4a4a4;
+    --secondary-grey-color: #888888;
+    --main-emph-color: #CC042B;
+    --main-blue-color: #043496;
+    --light-text-color: #f5f5f5;
+    --album-text-size: .9rem;
+    --album-title-size: 1.4rem;
+    --header-text-size: .9rem;
+}
 
 body {
-    background: magenta;
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    overflow: hidden;
+    background-color: var(--main-bg-color);
 }
-p {
-    font-size: 2em;
+
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* TOP NAV BAR */
+
+.page-header {
+    background-color: var(--main-bg-color);
+    border-bottom: 1px solid var(--main-dark-color);
+    position: fixed;
+    height: 4rem;
+    width: 100vw;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.page-header a {
+    height: 50%;
+}
+
+.logo {
+    height: 100%;
+    width: auto;
+    cursor: pointer;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links li:not(:last-child) {
+    padding-right: 2rem;
+}
+
+.nav-links li a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--main-dark-color);
+    letter-spacing: .1rem;
+    position: relative;
+    font-size: var(--header-text-size);
+}
+
+.nav-links li a:hover {
+    color: var(--main-emph-color);
+}
+
+.nav-links li a:after {
+    content: '';
+    position: absolute;
+    width: calc(100% - .1rem);
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -.15rem;
+    left: 0;
+    background-color: var(--main-emph-color);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-links li a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--main-dark-color);
+}
+
+ul {
+    margin: 0;
+}
+
+/*
+.nav-links li a.active {
+    background-color: red;
+}
+*/
+
+/* ================= */
+
+
+
+
+/* LANDING LAYOUT */
+
+.landing-page-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-photo {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.85)), url("/images/home2.jpg");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: 20% 0;
+}
+
+.content {
+    width: 60%;
+    position: absolute;
+    text-align: center;
+    color: var(--main-bg-color);
+    font-size: 1.3rem;
+    line-height: 1.6em;
+    font-weight: 500;
+}
+
+.content img {
+    width: 50%;
+}
+
+.content p {
+    margin: 0;
+    margin-top: .75rem;
+    margin-bottom: 2.75rem;
+}
+
+.content a {
+    color: var(--main-bg-color);
+    text-decoration: none;
+    border: 1px solid var(--main-bg-color);
+    padding: .625rem 2em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.content a:hover {
+    background-color: var(--main-emph-color);
+    transition: 0.3s ease-in;
+}
+
+/* ================= */
+
+
+
+
+/* HISTORY LAYOUT */
+
+#history-body {
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 2rem;
+}
+
+#banner-image {
+    margin-top: 4rem;
+    height: 65vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0rem;
+}
+
+#banner-image :not(.banner-text) {
+    filter: grayscale(1) brightness(90%);
+    transition: filter 0.5s ease;
+}
+
+#banner-image h1 {
+    margin: 0;
+    position: absolute;
+    color: var(--main-bg-color);
+    font-size: 6rem;
+    font-family: 'Bodoni Moda', serif;
+    text-transform: lowercase;
+    letter-spacing: 0.5rem;
+    pointer-events: none;
+    text-align: center;
+
+}
+
+#banner-image a {
+    font-style: italic;
+    color: var(--main-bg-color);
+    pointer-events: none;
+}
+
+#main-image {
+    height: 100%;
+    width: 100%;
+    background-image: url(/images/historyphoto.jpeg);
+    background-size: cover;
+    background-position: 50% 65%;
+}
+
+#banner-image :hover {
+    filter: grayscale(0) brightness(90%);
+}
+
+#banner-image:hover a {
+    color: var(--main-emph-color);
+    transition: color 0.3s ease;
+}
+
+.banner-text {
+    line-height: 6rem;
+}
+
+.choose {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 65%;
+    width: 100vw;
+}
+
+.choose h1 {
+    font-size: 1.35rem;
+    text-transform: lowercase;
+    letter-spacing: .25rem;
+    margin-right: -.25rem;
+    font-weight: 500;
+    color: var(--main-bg-color);
+    animation: blink 1.75s linear infinite;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 3rem;
+}
+
+.card {
+    flex: 0 1 calc(16.67% - .875rem);
+    border: 1px solid var(--main-dark-color);
+    height: 25rem;
+    margin-bottom: 3rem;
+    /*filter: grayscale(1);*/
+}
+
+.card-image {
+    height: 85%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-bottom: 1px solid var(--main-dark-color)
+}
+/*
+.card:hover {
+    filter: grayscale(0);
+    transition: filter 0.5s ease;
+}
+*/
+
+.redirect {
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: .75rem;
+    margin-right: .75rem;
+}
+
+.redirect a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: .85rem;
+    color: var(--main-dark-color);
+}
+
+.redirect-text {
+    letter-spacing: .1rem;
+}
+
+.redirect a:hover {
+    color: var(--main-emph-color);
+    font-weight: 600;
+}
+
+
+/* ================= */
+
+
+
+
+/* HISTORY SECTIONS */
+
+.history-page-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: var(--main-bg-color);
+}
+
+.history-page-header {
+    background-color: var(--main-bg-color);
+    border-bottom: 1px solid var(--secondary-grey-color);
+    position: fixed;
+    height: 3rem;
+    width: 100vw;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.history-nav-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: .85rem;
+    color: var(--main-grey-color);
+    letter-spacing: .2rem;
+}
+
+#history-home {
+    color: var(--main-dark-color);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*
+.two-link {
+    font-size: 1rem;
+}
+*/
+
+.history-nav-link:hover {
+    color: var(--main-emph-color);
+    font-weight: 500;
+}
+
+#history-home:hover {
+    color: var(--main-emph-color);
+}
+
+
+.section-title {
+    margin-top: 3rem;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--secondary-grey-color);
+}
+
+.section-title h1 {
+    margin: 0;
+    font-family: 'Bodoni Moda', serif;
+    text-transform: uppercase;
+    color: var(--main-dark-color);
+    font-size: 2rem;
+    letter-spacing: .3rem;
+}
+
+.section-title a {
+    font-style: italic;
+    color: var(--main-emph-color);
+}
+
+.section-copy {
+    width: 100vw;
+    line-height: 200%;
+    font-size: 1.4rem;
+    overflow: scroll;
+    text-align: center;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.section-copy p {
+    margin: 0;
+    margin-left: 18vw;
+    margin-right: 18vw;
+}
+
+.section-copy p:not(:last-child) {
+    margin-bottom: 2.5rem;
+}
+
+.copy-text {
+    padding-top: 2.5rem;
+    width: 100%;
+    border-left: 1px solid var(--secondary-grey-color);
+    border-right: 1px solid var(--secondary-grey-color);
+    padding-bottom: 2.5rem;
+
+}
+
+
+/* ================= */
+
+
+
+
+/* DISCOGRAPHY LAYOUT */
+
+.discography-page-container {
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+}
+
+.album {
+    height: 100%;
+    flex: 1;
+    transition: flex 0.2s ease-in;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.album.active {
+    flex: 5;
+    border-left: 1px solid var(--light-text-color);
+    border-right: 1px solid var(--light-text-color);
+}
+
+.album-image {
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.album.active .album-image {
+    filter: brightness(75%) blur(10px);
+    transform: scale(1.1);
+}
+
+.album-text { /* container */
+    height: 100%;
+    display: flex;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: .75rem;
+}
+
+.album-title {
+    opacity: 0;
+    color: var(--light-text-color);
+    font-family: 'Arapey', serif;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    margin: 0;
+    margin-right: -.2rem;
+    font-size: var(--album-title-size);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.album-tracklist {
+    opacity: 0;
+    color: var(--light-text-color);
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-size: var(--album-text-size);
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.listening-links {
+    opacity: 0;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: var(--album-text-size);
+}
+
+.listening-links a {
+    color: var(--light-text-color);
+    text-transform: uppercase;
+    text-decoration: underline var(--light-text-color);
+    text-underline-offset: .25rem;
+    transition: .3s;
+}
+
+.listening-links li:not(:last-child):after {
+    content:"/";
+    color: var(--light-text-color);
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.listening-links a:hover {
+    color: var(--main-emph-color);
+    text-decoration: underline var(--main-emph-color);
+    text-underline-offset: .35rem;
+}
+
+.album.active .album-title {
+    opacity: 1;
+    transition: opacity 0.1s ease-in;
+}
+.album.active .album-tracklist {
+    opacity: 1;
+    transition: opacity 0.1s ease-in;
+}
+.album.active .listening-links {
+    opacity: 1;
+    transition: opacity 0.1s ease-in;
+}
+
+#house-of-balloons {
+    background-image: url("/images/hob.jpg");
+}
+
+#thursday {
+    background-image: url("/images/thursday.jpg");
+}
+  
+#echoes-of-silence {
+    background-image: url("/images/eos.jpg");
+}
+
+#trilogy {
+    background-image: url("/images/trilogy.jpg");
+}
+
+#kiss-land {
+    background-image: url("/images/kissland.jpg");
+}
+
+#beauty-behind-the-madness {
+    background-image: url("/images/bbtm.jpg");
+}
+
+#starboy {
+    background-image: url("/images/starboy.jpg");
+}
+
+#my-dear-melancholy {
+    background-image: url("/images/mdm.jpg");
+}
+
+#after-hours {
+    background-image: url("/images/afterhours.jpg");
+}
+
+#dawn-fm {
+    background-image: url("/images/dawnfm.jpg");
+}
+
+/* ================= */
+
+/* PROJECT FILES */
+
+.project-page-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+
+
+/* MEDIA SCREENS */
+
+@media screen and (max-width: 1000px) {
+
+    /* LANDING PAGE */
+
+    .content img {
+        width: 70%;
+    }
+
+    .content {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+
+/* TABLETS */
+
+@media screen and (max-width: 850px) {
+
+
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 1rem);
+    }
+
+    .redirect a {
+        font-size: 1.125rem;
+    }
+
+    .section-copy p {
+        margin: 0;
+        margin-left: 9.5vw;
+        margin-right: 9.5vw;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    
+    /* LANDING PAGE */
+
+    .content img {
+        width: 80%;
+    }
+
+    .content {
+        font-size: 1.1rem;
+    }
+
+
+
+
+    /* HISTORY PAGE */
+
+    #banner-image h1 {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        font-size: 4.5rem;
+        line-height: 3rem;
+    }
+
+
+
+
+    /* DISCOGRAPHY PAGE */
+
+    .discography-page-container {
+        flex-direction: column;
+        align-items: normal;
+    }
+    
+    .album-image {
+        background-size: 100% auto;
+    }
+
+    .album-text {
+        width: 100%;
+        display: block;
+        padding: 2.5rem;
+    }
+
+    .album.active {
+        border-top: 1px solid var(--light-text-color);
+        border-bottom: 1px solid var(--light-text-color);
+        border-left: none;
+        border-right: none;
+    }
+    
+    .album.active .album-text {
+        overflow: scroll;
+    }
+    
+
+
+
+    /* HEADER -> HAMBURGER */
+
+    .nav-links {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        flex-direction: column;
+        background-color: var(--main-bg-color);
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        max-height: 0;
+        transition: max-height .6s ease-in-out;
+        overflow: hidden;
+    }
+
+    .nav-links li {
+        padding: 1.25rem 0;
+        border-bottom: 1px solid rgb(198, 198, 198);
+    }
+
+    .nav-links li:not(:last-child) {
+        padding-right: 0;
+    }
+
+    .nav-links.active {
+        left: 0;
+        top: 4rem;
+        padding: 0;
+        max-height: 100%;
+    }
+
+    .nav-links.active li:not(:last-child) {
+        padding-right: 0;
+        border-bottom: 1px solid rgb(198, 198, 198);
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #banner-image h1 {
+        font-size: 3.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        line-height: 1.5rem;
+    }
+
+}
+
+/* PHONES */
+
+@media screen and (max-width: 420px) {
+
+    /* LANDING PAGE */
+
+    .content img {
+        width: 100%;
+    }
+    
+    .content {
+        font-size: 1rem;
+    }
+
+
+
+
+    /* HISTORY PAGE */
+
+    #banner-image h1 {
+        font-size: 3rem;
+        letter-spacing: .25rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        line-height: 1.5rem;
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        flex: 0 1 calc(100%);
+    }
+
+    .choose h1 {
+        font-size: 1.175rem;
+    }
+
+    .section-copy {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .section-copy p {
+        margin: 0;
+        margin-left: 7vw;
+        margin-right: 7vw;
+    }
+}
+
+
+
+
+@media screen and (max-width: 280px) {
+    #banner-image h1 {
+        font-size: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        line-height: .25rem;
+    }
+
+    .choose h1 {
+        font-size: 1rem;
+    }
 }
