@@ -45,9 +45,7 @@ function resetBrightness(){
 
 
 
-
-
-/* HEADER */
+// HEADER //
 
 const hamburger = document.querySelector(".hamburger"); /* hamburger menu expand and close */
 const navMenu = document.querySelector(".nav-links");

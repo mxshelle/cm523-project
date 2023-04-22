@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/quiz.js" defer></script>
+  </head>
+  <body>
+    <div class="quiz-page-container">
+        <header class="page-header">
+            <a href="index.html"><img class="logo" src="images/logo.png"></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="history.html" class="nav-link">History</a></li>
+                    <li><a href="discography.html" class="nav-link">Discography</a></li>
+                    <li><a href="quiz.html" class="nav-link">Quiz</a></li>
+                    <li><a href="project.html" class="nav-link">Project</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+          </header>
+          <div class="rest-of-page">
+            
+            <div class="home-box box">
+              <h3>Test Your <span>Musical Knowledge</span></h3>
+              <p> Curious to find out how well you know The Weeknd's discography? Take this quiz to find out.
+                  Out of 30 chosen songs, you'll be randomly given ten 30-second snippets and four options to
+                  choose from when guessing. Good luck!
+              </p>
+              <button type="button" class="btn" onclick="startQuiz()">Start Quiz</button>
+            </div>
+
+            <div class="quiz-box box hide">
+              <div class="player">
+                <div class="slider-container"> 
+                      <input type="range" min="1" max="100" value="0" class="styled-slider slider-progress" onchange="seekTo()">
+                </div>
+                <div class="buttons">
+                  <div class="time current-time">00:00</div>
+                      <div class="playpause-track" onclick="playpauseTrack()">
+                          <i class="fa fa-play-circle fa-2x"></i>
+                      </div>
+                      <div class="time total-duration">00:30</div>
+                </div> 
+              </div>
+
+              <div class="question-text">
+                
+              </div>
+              <div class="option-container">
+                <!--
+                <div class="option">1</div>
+                <div class="option">2</div>
+                <div class="option">3</div>
+                <div class="option">4</div>
+                -->
+              </div>
+              <div class="next-btn hide">
+                <button type="button" class="next-question btn" onclick="next()">Next</button>
+              </div>
+              <div class="progress-indicator">
+                <!-- 
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                -->
+              </div>
+            </div>
+
+            <div class="result-box box hide"> 
+              <h1>&#127881; Your Results</h1>
+              <p>You got <span class="total-correct">X</span> out of 10 correct, scoring <span class="percentage">Y</span>%.</p>
+              <p class="changing-result-text">Insert line.</p>
+              <button type="button" class="try-btn btn" onclick="tryAgain()">Try Again</button>
+              <button type="button" class="quit-btn btn" onclick="quit()">Quit Game</button>
+            </div>
+
+          </div>
+    </div>
+</body>
+</html>
