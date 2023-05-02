@@ -294,8 +294,11 @@ const questionLimit = 10;
 const nextBtn = document.querySelector('.next-btn');
 const progressIndicatorArea = document.querySelector('.progress-indicator');
 const home = document.querySelector('.home-box');
-const quiz = document.querySelector('.quiz-box')
-const results = document.querySelector('.result-box')
+const quiz = document.querySelector('.quiz-box');
+const results = document.querySelector('.result-box');
+const startBtn = document.querySelector('.start-button');
+const tryBtn = document.querySelector('.try-btn');
+const quitBtn = document.querySelector('.quit-btn');
 
 let questionCounter = 0;
 let currentQuestion;
@@ -317,20 +320,20 @@ function getNewQuestion() {
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.question;
 
-    // load track
+    // change timers / slider values
     clearInterval(updateTimer);
     reset();
 
+    // load new track
     playing.src = currentQuestion.path;
     playing.load();
 
+    // maintain slider
     updateTimer = setInterval(setUpdate, 1000);
 
     // get position of current question and rid of the used question from question array
     const index1 = availableQuestions.indexOf(questionIndex);
     availableQuestions.splice(index1, 1);
-
-    console.log(currentQuestion);
 
     // set question options (songs) and add to quiz
     currentQuestion.options.forEach ( option => {
@@ -355,32 +358,44 @@ function getNewQuestion() {
         option.setAttribute("onclick", "getResult(this)");
     }
 
-
+    // increase question counter
     questionCounter++;
 
 }
 
+let correctIcon = '<div class="correct-icon"></div>';
+let incorrectIcon = '<div class="incorrect-icon"></div>';
+
 function getResult(choice) {
+    
+    // get selected choice's ID
     const id = parseInt(choice.id)
+
+    // check if it matches the answer
     if (id === currentQuestion.answer) {
         choice.classList.add("correct");
+        choice.insertAdjacentHTML("beforeend", correctIcon);
         updateProgress("correct");
         correctAnswers++;
     } else {
         choice.classList.add("incorrect");
+        choice.insertAdjacentHTML("beforeend", incorrectIcon);
         updateProgress("incorrect");
         const options = optionContainer.children.length;
         for (let i = 0; i < options ; i++) {
             if (parseInt(optionContainer.children[i].id) === currentQuestion.answer) {
+                optionContainer.children[i].insertAdjacentHTML("beforeend", correctIcon);
                 optionContainer.children[i].classList.add("correct");
             }
         }
     }
     
+    // allow them to go to next question
     nextBtn.classList.remove('hide');
     oneChoice();
 }
 
+// make sure only one choice can be selected
 function oneChoice() {
     const optionLen = optionContainer.children.length;
     for (let i = 0; i < optionLen; i++) {
@@ -388,6 +403,7 @@ function oneChoice() {
     }
 }
 
+// add progress area
 function progressIndicator() {
     progressIndicatorArea.innerHTML = '';
     const totalQuestions = questionLimit;
@@ -397,10 +413,12 @@ function progressIndicator() {
     }
 }
 
+// update progress area if it's right/wrong
 function updateProgress(answer) {
     progressIndicatorArea.children[questionCounter - 1].classList.add(answer);
 }
 
+// next button
 function next() {
     if (questionCounter === questionLimit) {
         end();
@@ -424,7 +442,7 @@ function quizResults() {
     results.querySelector('.total-correct').innerHTML = correctAnswers;
     results.querySelector('.percentage').innerHTML = (correctAnswers / 10) * 100;
     if (correctAnswers <= 5) {
-        results.querySelector('.changing-result-text').innerHTML = "Nice try but consider listening to more of his music!";
+        results.querySelector('.changing-result-text').innerHTML = "Nice try but consider listening to more of his <a href='discography.html'>music</a>!";
     } else if (correctAnswers < 8) {
         results.querySelector('.changing-result-text').innerHTML = "You're a fan! You seem to know a lot of his music!";
     } else {
@@ -457,3 +475,10 @@ function startQuiz() {
     getNewQuestion();
     progressIndicator();
 }
+
+playPauseBtn.addEventListener('click', playpauseTrack);
+startBtn.addEventListener('click', startQuiz);
+nextBtn.addEventListener('click', next);
+tryBtn.addEventListener('click', tryAgain);
+quitBtn.addEventListener('click', quit);
+slider.addEventListener('change', seekTo);

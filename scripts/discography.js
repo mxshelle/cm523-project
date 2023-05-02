@@ -32,11 +32,13 @@ albums.forEach(album =>{ /* clicks expand albums and apply brightness/blur */
         if (album.classList.contains('active')) {
             removeActionClasses();
             resetBrightness();
+            //document.body.style.overflow = 'scroll'
         } else {
             resetBrightness();
             removeActionClasses();
             album.classList.add('active');
             lowerBrightness();
+            //document.body.style.overflow = 'hidden'
         }
     })
 })
