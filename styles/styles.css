@@ -439,15 +439,15 @@ ul {
     line-height: 200%;
     font-size: 1.4rem;
     overflow: scroll;
-    text-align: center;
+    text-align: left;
     padding-left: 5rem;
     padding-right: 5rem;
 }
 
 .section-copy p {
     margin: 0;
-    margin-left: 18vw;
-    margin-right: 18vw;
+    margin-left: 19vw;
+    margin-right: 19vw;
 }
 
 .section-copy p:not(:last-child) {
